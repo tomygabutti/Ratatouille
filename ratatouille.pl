@@ -89,16 +89,21 @@ saludable(Plato):-
   Cals < 75.
 
 criticaPositiva(Resto, cormillot):-
+  trabajaEn(Resto, _),
   inspeccionSatisfactoria(Resto),
   forall((trabajaEn(Resto, Chef), cocina(Chef, Plato, _)), saludableParaCormillot(Plato)).
   
 criticaPositiva(Resto, christophe):-
+  trabajaEn(Resto, _),
   inspeccionSatisfactoria(Resto),
   findall(Chef, trabajaEn(Resto, Chef), Chefs),
   length(Chefs, Cantidad),
   Cantidad > 3.
+
+ %findall(_, trabajaEn(Resto, _), Chefs), Solo para contar sirve
   
 criticaPositiva(Resto, antonEgo):-
+  trabajaEn(Resto, _),
   inspeccionSatisfactoria(Resto),
   especialista(Resto, ratatouille).
   
